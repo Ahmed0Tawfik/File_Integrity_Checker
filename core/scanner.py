@@ -6,7 +6,7 @@ from core.hasher import hash_file
 
 SEVERITY_MAP = {
     "CRITICAL": {".exe", ".dll", ".sys", ".ko", ".so", ".dylib"},
-    "HIGH":     {".py", ".js", ".sh", ".bat", ".ps1", ".rb", ".php", ".pl", ".cmd"},
+    "HIGH":     {".py",".cpp", ".js", ".sh", ".bat", ".ps1", ".rb", ".php", ".pl", ".cmd"},
     "MEDIUM":   {".conf", ".cfg", ".ini", ".json", ".yaml", ".yml", ".toml", ".xml", ".env"},
     "LOW":      {".txt", ".md", ".rst", ".log", ".csv"},
 }
