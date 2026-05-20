@@ -1,7 +1,3 @@
-"""
-verifier.py — Diffs a fresh scan against a saved baseline.
-"""
-
 import time
 from pathlib import Path
 from core.scanner import scan_directory
@@ -15,36 +11,15 @@ def verify_integrity(
     ignore_patterns: list = None,
     progress_callback=None,
 ) -> dict:
-    """
-    Re-scans a directory, loads the saved baseline, and diffs the two.
-
-    Args:
-        directory:        Directory to re-scan.
-        baseline_path:    Path to the .json baseline file.
-        algorithm:        Override the algorithm (defaults to what was stored in baseline).
-        ignore_patterns:  Glob patterns to skip.
-        progress_callback: Optional callable(current, total, filename).
-
-    Returns:
-        dict with keys:
-            unchanged: list of file dicts
-            modified:  list of file dicts
-            deleted:   list of file dicts
-            new:       list of file dicts
-            summary:   dict with counts + timing
-    """
     baseline = load_baseline(baseline_path)
     meta = baseline.get("__meta__", {})
 
-    # Honour algorithm stored in baseline unless caller overrides
     algo = algorithm or meta.get("algorithm", "sha256")
 
-    # Re-scan
     t0 = time.time()
     current = scan_directory(directory, algo, ignore_patterns, progress_callback)
     elapsed = round(time.time() - t0, 2)
 
-    # Strip __meta__ from both for comparison
     baseline_files = {k: v for k, v in baseline.items() if k != "__meta__"}
     current_files  = {k: v for k, v in current.items()  if k != "__meta__"}
 
@@ -56,7 +31,7 @@ def verify_integrity(
     deleted   = []
     new_files = []
 
-    # Deleted — in baseline but not in current scan
+    # Deleted
     for path in sorted(baseline_keys - current_keys):
         deleted.append({
             "path":     path,
@@ -68,7 +43,7 @@ def verify_integrity(
             "new_size": 0,
         })
 
-    # New — in current scan but not in baseline
+    # New
     for path in sorted(current_keys - baseline_keys):
         new_files.append({
             "path":     path,
@@ -80,7 +55,7 @@ def verify_integrity(
             "new_size": current_files[path].get("size", 0),
         })
 
-    # Common paths — check hash
+    # Common
     for path in sorted(baseline_keys & current_keys):
         b = baseline_files[path]
         c = current_files[path]

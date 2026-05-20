@@ -1,6 +1,4 @@
-"""
-main.py — Application entry point.
-"""
+
 
 import sys
 import os

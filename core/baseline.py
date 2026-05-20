@@ -1,7 +1,3 @@
-"""
-baseline.py — Save and load JSON baseline snapshots.
-"""
-
 import json
 import os
 import time
@@ -9,16 +5,6 @@ from pathlib import Path
 
 
 def save_baseline(scan_result: dict, output_path: str) -> str:
-    """
-    Writes the scan result dict to a JSON file (the trusted snapshot).
-
-    Args:
-        scan_result: Output of scan_directory().
-        output_path: Where to write the .json file.
-
-    Returns:
-        Absolute path to the written file.
-    """
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -29,19 +15,6 @@ def save_baseline(scan_result: dict, output_path: str) -> str:
 
 
 def load_baseline(baseline_path: str) -> dict:
-    """
-    Loads a saved baseline JSON file.
-
-    Args:
-        baseline_path: Path to the .json baseline file.
-
-    Returns:
-        The parsed dict.
-
-    Raises:
-        FileNotFoundError: If the baseline file does not exist.
-        ValueError: If the file is not valid JSON.
-    """
     path = Path(baseline_path)
     if not path.exists():
         raise FileNotFoundError(f"Baseline not found: '{baseline_path}'")
@@ -54,11 +27,6 @@ def load_baseline(baseline_path: str) -> dict:
 
 
 def list_baselines(baselines_dir: str = "baselines") -> list:
-    """
-    Returns a list of dicts describing all .json files in the baselines directory.
-
-    Each dict contains: path, name, size_kb, created_at (human-readable), meta.
-    """
     bd = Path(baselines_dir)
     if not bd.exists():
         return []

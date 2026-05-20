@@ -1,7 +1,3 @@
-"""
-reporter.py — Plain-text report formatter and log writer.
-"""
-
 import os
 import re
 import time
@@ -9,13 +5,11 @@ from pathlib import Path
 
 
 def _strip_ansi(text: str) -> str:
-    """Removes ANSI escape codes from a string."""
     ansi_escape = re.compile(r"\x1b\[[0-9;]*m")
     return ansi_escape.sub("", text)
 
 
 def format_size(size_bytes: int) -> str:
-    """Human-readable file size."""
     for unit in ("B", "KB", "MB", "GB"):
         if size_bytes < 1024:
             return f"{size_bytes:.1f} {unit}"
@@ -24,9 +18,6 @@ def format_size(size_bytes: int) -> str:
 
 
 def build_plain_report(diff_result: dict) -> str:
-    """
-    Builds a plain-text integrity report string from a verify_integrity() result.
-    """
     s = diff_result.get("summary", {})
     lines = [
         "=" * 72,
@@ -71,12 +62,6 @@ def build_plain_report(diff_result: dict) -> str:
 
 
 def save_log(diff_result: dict, log_dir: str = "logs") -> str:
-    """
-    Writes the full report to a timestamped log file.
-
-    Returns:
-        Absolute path to the written log file.
-    """
     Path(log_dir).mkdir(parents=True, exist_ok=True)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     log_path = Path(log_dir) / f"integrity_{timestamp}.log"
@@ -90,10 +75,6 @@ def save_log(diff_result: dict, log_dir: str = "logs") -> str:
 
 
 def parse_log_history(log_dir: str = "logs") -> list:
-    """
-    Parses previous log files and returns a mini-history list of dicts.
-    Each dict: { path, timestamp, modified, deleted, new, unchanged }
-    """
     log_path = Path(log_dir)
     if not log_path.exists():
         return []
