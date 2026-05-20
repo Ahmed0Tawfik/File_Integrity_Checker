@@ -1,0 +1,29 @@
+========================================================================
+  FILE INTEGRITY REPORT
+  Generated : 2026-05-20 17:09:18
+  Directory : C:/Users/ahmed/Desktop/File_Integrity_Checker/TESTDIR
+  Baseline  : baselines\baseline_20260520_170847.json
+  Algorithm : SHA256
+  Scan time : 0.01 s
+========================================================================
+
+  SUMMARY — 4 files
+    Unchanged : 1
+    Modified  : 0
+    Deleted   : 1
+    New       : 2
+
+── DELETED (1) ─────────────────────────────────────────────────────
+  [LOW     ] New Text Document.txt
+             Hash: 2d32d2db26a9a8e8b3a69a5739a17981a5a064a5c3037a8d3891ab3e41f57246
+
+── NEW (2) ─────────────────────────────────────────────────────────
+  [LOW     ] FILE1.txt
+             Hash: 2d32d2db26a9a8e8b3a69a5739a17981a5a064a5c3037a8d3891ab3e41f57246
+  [LOW     ] FILE1COPY.txt
+             Hash: 2d32d2db26a9a8e8b3a69a5739a17981a5a064a5c3037a8d3891ab3e41f57246
+
+── UNCHANGED (1) ───────────────────────────────────────────────────
+  [LOW     ] New Text Document (2).txt
+
+========================================================================

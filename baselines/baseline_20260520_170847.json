@@ -1,0 +1,20 @@
+{
+  "New Text Document (2).txt": {
+    "hash": "f85f89b9d715c0d84d3ae180fca2c601ec56149cc06c3b1613fa71a72c00318f",
+    "size": 12,
+    "modified": 1779286110.5452385,
+    "severity": "LOW"
+  },
+  "New Text Document.txt": {
+    "hash": "2d32d2db26a9a8e8b3a69a5739a17981a5a064a5c3037a8d3891ab3e41f57246",
+    "size": 6,
+    "modified": 1779286103.2654767,
+    "severity": "LOW"
+  },
+  "__meta__": {
+    "algorithm": "sha256",
+    "scanned_at": 1779286127.3501642,
+    "root": "C:\\Users\\ahmed\\Desktop\\File_Integrity_Checker\\TESTDIR",
+    "file_count": 1
+  }
+}
